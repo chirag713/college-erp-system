@@ -14,11 +14,12 @@ export default function Dashboard() {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
     const name = localStorage.getItem('userName');
+    const id = localStorage.getItem('userId');
 
     if (!token) {
       navigate('/login');
     } else {
-      setUser({ name, role });
+      setUser({ id, name, role });
     }
   }, [navigate]);
 

@@ -85,3 +85,16 @@ export const signin = async (req, res) => {
     res.status(500).json({ message: 'Something went wrong during signin', error: error.message });
   }
 };
+
+export const getUsers = async (req, res) => {
+  try {
+    let query = {};
+    if (req.query.role) {
+      query.role = req.query.role;
+    }
+    const users = await User.find(query).select('-password');
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

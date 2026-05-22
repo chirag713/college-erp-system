@@ -18,6 +18,7 @@ export default function Sidebar({ role, activeTab, setActiveTab, handleLogout, u
     { id: 'overview', label: 'System Overview', icon: LayoutDashboard },
     { id: 'departments', label: 'Departments', icon: Building2 },
     { id: 'courses', label: 'Courses', icon: BookMarked },
+    { id: 'enrollments', label: 'Enrollments', icon: Users },
     { id: 'notices', label: 'Notices', icon: Bell },
     { id: 'directory', label: 'Directory', icon: Users },
     { id: 'settings', label: 'Settings', icon: Settings },
@@ -34,6 +35,7 @@ export default function Sidebar({ role, activeTab, setActiveTab, handleLogout, u
   const studentTabs = [
     { id: 'overview', label: 'My Overview', icon: LayoutDashboard },
     { id: 'academics', label: 'Academics', icon: GraduationCap },
+    { id: 'attendance', label: 'Attendance', icon: FileText },
     { id: 'notices', label: 'Notices', icon: Bell },
     { id: 'financials', label: 'Financials', icon: CreditCard },
   ];

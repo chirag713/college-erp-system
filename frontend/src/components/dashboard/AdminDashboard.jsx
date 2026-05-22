@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Users, FileText, TrendingUp, DollarSign, Search, Filter, MoreVertical, Check, X } from 'lucide-react';
 import DepartmentsModule from './modules/DepartmentsModule';
 import CoursesModule from './modules/CoursesModule';
+import EnrollmentsModule from './modules/EnrollmentsModule';
 import NoticesModule from './modules/NoticesModule';
 
 export default function AdminDashboard({ activeTab }) {
@@ -203,6 +204,7 @@ export default function AdminDashboard({ activeTab }) {
       {/* Dynamic API Modules */}
       {activeTab === 'departments' && <DepartmentsModule />}
       {activeTab === 'courses' && <CoursesModule />}
+      {activeTab === 'enrollments' && <EnrollmentsModule />}
       {activeTab === 'notices' && <NoticesModule role="admin" />}
     </div>
   );

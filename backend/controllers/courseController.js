@@ -2,7 +2,11 @@ import Course from '../models/Course.js';
 
 export const getCourses = async (req, res) => {
   try {
-    const courses = await Course.find().populate('department', 'name code').populate('facultyAssigned', 'name email');
+    let query = {};
+    if (req.query.facultyAssigned) {
+      query.facultyAssigned = req.query.facultyAssigned;
+    }
+    const courses = await Course.find(query).populate('department', 'name code').populate('facultyAssigned', 'name email');
     res.status(200).json(courses);
   } catch (error) {
     res.status(500).json({ message: error.message });

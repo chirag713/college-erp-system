@@ -1,11 +1,28 @@
 import Enrollment from '../models/Enrollment.js';
+import Course from '../models/Course.js';
 
 export const getEnrollments = async (req, res) => {
   try {
-    // If student, only get their own enrollments
     let query = {};
     if (req.user.role === 'student') {
       query.student = req.user._id;
+    } else if (req.user.role === 'faculty') {
+      const facultyCourses = await Course.find({ facultyAssigned: req.user._id }).select('_id');
+      const courseIds = facultyCourses.map(c => c._id);
+      query.course = { $in: courseIds };
+    }
+
+    if (req.query.course) {
+      // If faculty also passed a course query, ensure it matches
+      if (query.course && query.course.$in) {
+        if (query.course.$in.some(id => id.toString() === req.query.course)) {
+          query.course = req.query.course;
+        } else {
+          return res.status(403).json({ message: 'Not authorized for this course' });
+        }
+      } else {
+        query.course = req.query.course;
+      }
     }
     
     const enrollments = await Enrollment.find(query).populate('student', 'name email').populate('course', 'courseName courseCode');

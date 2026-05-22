@@ -1,6 +1,8 @@
 import React from 'react';
 import { BookOpen, Users, Bell, FileText, ClipboardList } from 'lucide-react';
 import NoticesModule from './modules/NoticesModule';
+import FacultyCoursesModule from './modules/FacultyCoursesModule';
+import AttendanceModule from './modules/AttendanceModule';
 
 export default function FacultyDashboard({ activeTab }) {
   return (
@@ -48,22 +50,8 @@ export default function FacultyDashboard({ activeTab }) {
 
       {activeTab === 'notices' && <NoticesModule role="faculty" />}
 
-      {/* Placeholders for Faculty modules */}
-      {activeTab === 'courses' && (
-        <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm text-center">
-          <BookOpen className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-slate-900">My Courses</h3>
-          <p className="text-slate-500">Course materials and syllabus management coming soon.</p>
-        </div>
-      )}
-      
-      {activeTab === 'attendance' && (
-        <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm text-center">
-          <FileText className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-slate-900">Attendance Register</h3>
-          <p className="text-slate-500">Daily attendance marking system coming soon.</p>
-        </div>
-      )}
+      {activeTab === 'courses' && <FacultyCoursesModule />}
+      {activeTab === 'attendance' && <AttendanceModule />}
       
       {activeTab === 'results' && (
         <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm text-center">

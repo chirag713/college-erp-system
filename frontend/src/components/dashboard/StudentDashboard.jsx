@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BookOpen, Calendar, Clock, Download, UploadCloud, AlertCircle, CheckCircle2 } from 'lucide-react';
 import NoticesModule from './modules/NoticesModule';
+import StudentAcademicsModule from './modules/StudentAcademicsModule';
+import StudentAttendanceModule from './modules/StudentAttendanceModule';
 
 export default function StudentDashboard({ activeTab }) {
   const [fileSelected, setFileSelected] = useState(null);
@@ -149,44 +151,11 @@ export default function StudentDashboard({ activeTab }) {
         </div>
       )}
 
-      {/* Academics Tab (Mockup) */}
-      {activeTab === 'academics' && (
-        <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h3 className="text-xl font-bold text-slate-900 mb-6">Current Semester Courses</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-50 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  <th className="p-4 rounded-tl-xl">Course Code</th>
-                  <th className="p-4">Course Name</th>
-                  <th className="p-4">Credits</th>
-                  <th className="p-4 rounded-tr-xl">Current Grade</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm divide-y divide-slate-50">
-                <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-mono text-slate-600">CS301</td>
-                  <td className="p-4 font-semibold text-slate-900">Data Structures & Algorithms</td>
-                  <td className="p-4 text-slate-600">4</td>
-                  <td className="p-4"><span className="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-lg font-bold">A</span></td>
-                </tr>
-                <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-mono text-slate-600">CS302</td>
-                  <td className="p-4 font-semibold text-slate-900">Database Management Systems</td>
-                  <td className="p-4 text-slate-600">3</td>
-                  <td className="p-4"><span className="px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-lg font-bold">A-</span></td>
-                </tr>
-                <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-mono text-slate-600">MA201</td>
-                  <td className="p-4 font-semibold text-slate-900">Discrete Mathematics</td>
-                  <td className="p-4 text-slate-600">3</td>
-                  <td className="p-4"><span className="px-2.5 py-1 bg-blue-100 text-blue-700 rounded-lg font-bold">B+</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      {/* Academics Tab */}
+      {activeTab === 'academics' && <StudentAcademicsModule />}
+
+      {/* Attendance Tab */}
+      {activeTab === 'attendance' && <StudentAttendanceModule />}
 
       {/* Financials Tab (Mockup) */}
       {activeTab === 'financials' && (

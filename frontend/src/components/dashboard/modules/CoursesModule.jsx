@@ -5,18 +5,21 @@ import { BookMarked, Plus, Trash2 } from 'lucide-react';
 export default function CoursesModule() {
   const [courses, setCourses] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [faculty, setFaculty] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newCourse, setNewCourse] = useState({ courseName: '', courseCode: '', credits: 3, semester: 1, department: '' });
   const [showForm, setShowForm] = useState(false);
 
   const fetchData = async () => {
     try {
-      const [courseRes, deptRes] = await Promise.all([
+      const [courseRes, deptRes, facultyRes] = await Promise.all([
         api.get('/courses'),
-        api.get('/departments')
+        api.get('/departments'),
+        api.get('/users?role=faculty')
       ]);
       setCourses(courseRes.data);
       setDepartments(deptRes.data);
+      setFaculty(facultyRes.data);
       if (deptRes.data.length > 0) {
         setNewCourse(prev => ({ ...prev, department: deptRes.data[0]._id }));
       }
@@ -52,6 +55,16 @@ export default function CoursesModule() {
       } catch (error) {
         console.error('Error deleting', error);
       }
+    }
+  };
+
+  const handleAssignTeacher = async (courseId, facultyId) => {
+    try {
+      await api.put(`/courses/${courseId}`, { facultyAssigned: facultyId || null });
+      fetchData();
+    } catch (error) {
+      console.error('Error assigning teacher', error);
+      alert('Failed to assign teacher');
     }
   };
 
@@ -111,18 +124,29 @@ export default function CoursesModule() {
               <th className="p-4 rounded-tl-xl">Code</th>
               <th className="p-4">Course Name</th>
               <th className="p-4">Department</th>
+              <th className="p-4">Teacher Assigned</th>
               <th className="p-4">Credits</th>
               <th className="p-4 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="text-sm divide-y divide-slate-50">
             {courses.length === 0 ? (
-              <tr><td colSpan="5" className="p-4 text-center text-slate-500">No courses available.</td></tr>
+              <tr><td colSpan="6" className="p-4 text-center text-slate-500">No courses available.</td></tr>
             ) : courses.map(course => (
               <tr key={course._id} className="hover:bg-slate-50/50 transition-colors group">
                 <td className="p-4 font-mono font-bold text-slate-700">{course.courseCode}</td>
                 <td className="p-4 font-semibold text-slate-900">{course.courseName}</td>
                 <td className="p-4 text-slate-600">{course.department?.code || 'N/A'}</td>
+                <td className="p-4">
+                  <select 
+                    value={course.facultyAssigned?._id || ''} 
+                    onChange={e => handleAssignTeacher(course._id, e.target.value)}
+                    className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs focus:ring-2 focus:ring-indigo-500 outline-none"
+                  >
+                    <option value="">Unassigned</option>
+                    {faculty.map(f => <option key={f._id} value={f._id}>{f.name}</option>)}
+                  </select>
+                </td>
                 <td className="p-4 text-slate-600">{course.credits}</td>
                 <td className="p-4 text-center">
                   <button onClick={() => handleDelete(course._id)} className="p-2 text-red-400 hover:bg-red-50 hover:text-red-600 rounded-lg opacity-0 group-hover:opacity-100 transition-all">
