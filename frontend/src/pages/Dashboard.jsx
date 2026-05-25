@@ -57,9 +57,9 @@ export default function Dashboard() {
 
         {/* Dynamic Dashboard Views */}
         <main className="p-8">
-          {user.role === 'student' && <StudentDashboard activeTab={activeTab} />}
-          {user.role === 'faculty' && <FacultyDashboard activeTab={activeTab} />}
-          {user.role === 'admin' && <AdminDashboard activeTab={activeTab} />}
+          {user.role === 'student' && <StudentDashboard activeTab={activeTab} user={user} />}
+          {user.role === 'faculty' && <FacultyDashboard activeTab={activeTab} user={user} />}
+          {user.role === 'admin' && <AdminDashboard activeTab={activeTab} user={user} />}
         </main>
       </div>
     </div>

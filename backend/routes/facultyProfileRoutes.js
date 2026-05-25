@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route('/')
   .get(protect, getFacultyProfiles)
-  .post(protect, authorize('admin'), createFacultyProfile);
+  .post(protect, authorize('admin', 'faculty'), createFacultyProfile);
 
 router.route('/:id')
   .get(protect, getFacultyProfileById)

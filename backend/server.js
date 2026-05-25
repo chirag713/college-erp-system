@@ -10,6 +10,14 @@ import enrollmentRoutes from './routes/enrollmentRoutes.js';
 import attendanceRoutes from './routes/attendanceRoutes.js';
 import resultRoutes from './routes/resultRoutes.js';
 import noticeRoutes from './routes/noticeRoutes.js';
+import feeRoutes from './routes/feeRoutes.js';
+import timetableRoutes from './routes/timetableRoutes.js';
+import bookRoutes from './routes/bookRoutes.js';
+import bookIssueRoutes from './routes/bookIssueRoutes.js';
+import hostelRoutes from './routes/hostelRoutes.js';
+import hostelAllocationRoutes from './routes/hostelAllocationRoutes.js';
+import leaveRequestRoutes from './routes/leaveRequestRoutes.js';
+import roomChangeRoutes from './routes/roomChangeRoutes.js';
 
 dotenv.config();
 
@@ -28,6 +36,14 @@ app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/results', resultRoutes);
 app.use('/api/notices', noticeRoutes);
+app.use('/api/fees', feeRoutes);
+app.use('/api/timetable', timetableRoutes);
+app.use('/api/books', bookRoutes);
+app.use('/api/book-issues', bookIssueRoutes);
+app.use('/api/hostels', hostelRoutes);
+app.use('/api/hostel-allocations', hostelAllocationRoutes);
+app.use('/api/leave-requests', leaveRequestRoutes);
+app.use('/api/room-changes', roomChangeRoutes);
 
 app.get('/', (req, res) => {
     res.send('College ERP Backend is running with Database Connected! 🚀');

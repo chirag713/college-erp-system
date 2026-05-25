@@ -10,7 +10,12 @@ import {
   ChevronRight,
   Bell,
   Building2,
-  BookMarked
+  BookMarked,
+  User,
+  CalendarDays,
+  DollarSign,
+  BookOpen,
+  Home
 } from 'lucide-react';
 
 export default function Sidebar({ role, activeTab, setActiveTab, handleLogout, user }) {
@@ -21,6 +26,10 @@ export default function Sidebar({ role, activeTab, setActiveTab, handleLogout, u
     { id: 'enrollments', label: 'Enrollments', icon: Users },
     { id: 'notices', label: 'Notices', icon: Bell },
     { id: 'directory', label: 'Directory', icon: Users },
+    { id: 'fees', label: 'Fees', icon: DollarSign },
+    { id: 'timetable', label: 'Timetable', icon: CalendarDays },
+    { id: 'library', label: 'Library', icon: BookOpen },
+    { id: 'hostel', label: 'Hostel', icon: Home },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
@@ -30,6 +39,9 @@ export default function Sidebar({ role, activeTab, setActiveTab, handleLogout, u
     { id: 'attendance', label: 'Attendance', icon: FileText },
     { id: 'results', label: 'Results', icon: FileText },
     { id: 'notices', label: 'Notices', icon: Bell },
+    { id: 'timetable', label: 'Timetable', icon: CalendarDays },
+    { id: 'library', label: 'Library', icon: BookOpen },
+    { id: 'profile', label: 'My Profile', icon: User },
   ];
 
   const studentTabs = [
@@ -37,7 +49,11 @@ export default function Sidebar({ role, activeTab, setActiveTab, handleLogout, u
     { id: 'academics', label: 'Academics', icon: GraduationCap },
     { id: 'attendance', label: 'Attendance', icon: FileText },
     { id: 'notices', label: 'Notices', icon: Bell },
+    { id: 'timetable', label: 'Timetable', icon: CalendarDays },
     { id: 'financials', label: 'Financials', icon: CreditCard },
+    { id: 'library', label: 'Library', icon: BookOpen },
+    { id: 'hostel', label: 'Hostel', icon: Home },
+    { id: 'profile', label: 'My Profile', icon: User },
   ];
 
   const tabs = role === 'admin' ? adminTabs : role === 'faculty' ? facultyTabs : studentTabs;

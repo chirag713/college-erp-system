@@ -3,8 +3,13 @@ import { BookOpen, Calendar, Clock, Download, UploadCloud, AlertCircle, CheckCir
 import NoticesModule from './modules/NoticesModule';
 import StudentAcademicsModule from './modules/StudentAcademicsModule';
 import StudentAttendanceModule from './modules/StudentAttendanceModule';
+import StudentProfileModule from './modules/StudentProfileModule';
+import StudentFinancialsModule from './modules/StudentFinancialsModule';
+import TimetableModule from './modules/TimetableModule';
+import LibraryModule from './modules/LibraryModule';
+import HostelStudentModule from './modules/HostelStudentModule';
 
-export default function StudentDashboard({ activeTab }) {
+export default function StudentDashboard({ activeTab, user }) {
   const [fileSelected, setFileSelected] = useState(null);
   const [appSubmitted, setAppSubmitted] = useState(false);
 
@@ -157,31 +162,22 @@ export default function StudentDashboard({ activeTab }) {
       {/* Attendance Tab */}
       {activeTab === 'attendance' && <StudentAttendanceModule />}
 
-      {/* Financials Tab (Mockup) */}
-      {activeTab === 'financials' && (
-        <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-bold text-slate-900">Fee Invoices</h3>
-            <button className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-sm font-semibold transition-colors">
-              <Download className="w-4 h-4" /> Download Statement
-            </button>
-          </div>
-          <div className="space-y-4">
-            <div className="p-5 border border-slate-100 rounded-2xl flex items-center justify-between hover:border-indigo-100 transition-colors">
-              <div>
-                <p className="font-bold text-slate-900">Fall Semester 2026 Tuition</p>
-                <p className="text-sm text-slate-500 mt-1">Due: Aug 15, 2026</p>
-              </div>
-              <div className="flex items-center gap-6">
-                <p className="text-lg font-bold text-slate-900">$4,500.00</p>
-                <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-lg text-xs font-bold uppercase tracking-wider">Paid</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Financials Tab */}
+      {activeTab === 'financials' && <StudentFinancialsModule />}
 
       {activeTab === 'notices' && <NoticesModule role="student" />}
+
+      {/* Profile Tab */}
+      {activeTab === 'profile' && <StudentProfileModule user={user} />}
+
+      {/* Timetable Tab */}
+      {activeTab === 'timetable' && <TimetableModule role="student" user={user} />}
+
+      {/* Library Tab */}
+      {activeTab === 'library' && <LibraryModule />}
+
+      {/* Hostel Tab */}
+      {activeTab === 'hostel' && <HostelStudentModule />}
     </div>
   );
 }

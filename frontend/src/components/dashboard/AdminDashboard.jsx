@@ -4,8 +4,13 @@ import DepartmentsModule from './modules/DepartmentsModule';
 import CoursesModule from './modules/CoursesModule';
 import EnrollmentsModule from './modules/EnrollmentsModule';
 import NoticesModule from './modules/NoticesModule';
+import DirectoryModule from './modules/DirectoryModule';
+import FeeManagementModule from './modules/FeeManagementModule';
+import TimetableModule from './modules/TimetableModule';
+import LibraryAdminModule from './modules/LibraryAdminModule';
+import HostelAdminModule from './modules/HostelAdminModule';
 
-export default function AdminDashboard({ activeTab }) {
+export default function AdminDashboard({ activeTab, user }) {
   const [applications, setApplications] = useState([
     { id: '101', student: 'Alice Smith', course: 'Computer Science', status: 'Pending', date: '2026-05-18' },
     { id: '102', student: 'Bob Jones', course: 'Mechanical Eng.', status: 'Reviewed', date: '2026-05-19' },
@@ -170,18 +175,20 @@ export default function AdminDashboard({ activeTab }) {
         </div>
       )}
 
-      {/* Directory Tab (Mockup) */}
-      {activeTab === 'directory' && (
-        <div className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm text-center">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Users className="w-10 h-10 text-slate-400" />
-          </div>
-          <h3 className="text-xl font-bold text-slate-900 mb-2">User Directory</h3>
-          <p className="text-slate-500 max-w-md mx-auto">
-            A comprehensive list of all students, faculty, and administrative staff will be displayed here with advanced filtering and export options.
-          </p>
-        </div>
-      )}
+      {/* Directory Tab */}
+      {activeTab === 'directory' && <DirectoryModule />}
+
+      {/* Fees Tab */}
+      {activeTab === 'fees' && <FeeManagementModule />}
+
+      {/* Timetable Tab */}
+      {activeTab === 'timetable' && <TimetableModule role="admin" user={user} />}
+
+      {/* Library Tab */}
+      {activeTab === 'library' && <LibraryAdminModule />}
+
+      {/* Hostel Tab */}
+      {activeTab === 'hostel' && <HostelAdminModule />}
 
       {/* Settings Tab (Mockup) */}
       {activeTab === 'settings' && (

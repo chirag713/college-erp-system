@@ -3,8 +3,11 @@ import { BookOpen, Users, Bell, FileText, ClipboardList } from 'lucide-react';
 import NoticesModule from './modules/NoticesModule';
 import FacultyCoursesModule from './modules/FacultyCoursesModule';
 import AttendanceModule from './modules/AttendanceModule';
+import FacultyProfileModule from './modules/FacultyProfileModule';
+import TimetableModule from './modules/TimetableModule';
+import LibraryModule from './modules/LibraryModule';
 
-export default function FacultyDashboard({ activeTab }) {
+export default function FacultyDashboard({ activeTab, user }) {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       {activeTab === 'overview' && (
@@ -60,6 +63,15 @@ export default function FacultyDashboard({ activeTab }) {
           <p className="text-slate-500">Exam result publishing coming soon.</p>
         </div>
       )}
+
+      {/* Profile Tab */}
+      {activeTab === 'profile' && <FacultyProfileModule user={user} />}
+
+      {/* Timetable Tab */}
+      {activeTab === 'timetable' && <TimetableModule role="faculty" user={user} />}
+
+      {/* Library Tab */}
+      {activeTab === 'library' && <LibraryModule />}
     </div>
   );
 }
