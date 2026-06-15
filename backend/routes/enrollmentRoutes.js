@@ -1,6 +1,7 @@
 import express from 'express';
 import { getEnrollments, getEnrollmentById, createEnrollment, updateEnrollment, deleteEnrollment } from '../controllers/enrollmentController.js';
-import { protect, authorize } from '../middleware/authMiddleware.js';
+import { protect } from '../middleware/authMiddleware.js';
+import { authorize } from '../middleware/roleMiddleware.js';
 
 const router = express.Router();
 

@@ -9,6 +9,24 @@ import TimetableModule from './modules/TimetableModule';
 import LibraryModule from './modules/LibraryModule';
 import HostelStudentModule from './modules/HostelStudentModule';
 
+import SubjectSemesterModule from './modules/SubjectSemesterModule';
+import ExamModule from './modules/ExamModule';
+import AssignmentModule from './modules/AssignmentModule';
+import AcademicCalendarModule from './modules/AcademicCalendarModule';
+
+import TransportModule from './modules/TransportModule';
+import ComplaintModule from './modules/ComplaintModule';
+import LeaveRequestModule from './modules/LeaveRequestModule';
+import NotificationModule from './modules/NotificationModule';
+
+import EventModule from './modules/EventModule';
+import PlacementModule from './modules/PlacementModule';
+import AlumniModule from './modules/AlumniModule';
+import CertificateModule from './modules/CertificateModule';
+import IdCardModule from './modules/IdCardModule';
+
+import DocumentModule from './modules/DocumentModule';
+
 export default function StudentDashboard({ activeTab, user }) {
   const [fileSelected, setFileSelected] = useState(null);
   const [appSubmitted, setAppSubmitted] = useState(false);
@@ -178,6 +196,28 @@ export default function StudentDashboard({ activeTab, user }) {
 
       {/* Hostel Tab */}
       {activeTab === 'hostel' && <HostelStudentModule />}
+
+      {/* New Batch 1 Modules */}
+      {activeTab === 'semesters' && <SubjectSemesterModule role="student" user={user} />}
+      {activeTab === 'exams' && <ExamModule role="student" user={user} />}
+      {activeTab === 'assignments' && <AssignmentModule role="student" user={user} />}
+      {activeTab === 'calendar' && <AcademicCalendarModule role="student" user={user} />}
+
+      {/* Batch 2 Modules */}
+      {activeTab === 'transport' && <TransportModule role="student" user={user} />}
+      {activeTab === 'complaints' && <ComplaintModule role="student" user={user} />}
+      {activeTab === 'leaves' && <LeaveRequestModule role="student" user={user} />}
+      {activeTab === 'alerts' && <NotificationModule role="student" user={user} />}
+
+      {/* Batch 3 Modules */}
+      {activeTab === 'events' && <EventModule role="student" user={user} />}
+      {activeTab === 'placements' && <PlacementModule role="student" user={user} />}
+      {activeTab === 'alumni' && <AlumniModule role="student" user={user} />}
+      {activeTab === 'certificates' && <CertificateModule role="student" user={user} />}
+      {activeTab === 'idcards' && <IdCardModule role="student" user={user} />}
+
+      {/* Batch 4 Modules */}
+      {activeTab === 'documents' && <DocumentModule role="student" user={user} />}
     </div>
   );
 }

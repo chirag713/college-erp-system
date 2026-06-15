@@ -1,6 +1,7 @@
 import express from 'express';
 import { getRoomChangeRequests, getMyRoomChangeRequests, createRoomChangeRequest, updateRoomChangeStatus } from '../controllers/roomChangeController.js';
-import { protect, authorize } from '../middleware/authMiddleware.js';
+import { protect } from '../middleware/authMiddleware.js';
+import { authorize } from '../middleware/roleMiddleware.js';
 
 const router = express.Router();
 

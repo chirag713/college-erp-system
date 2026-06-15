@@ -19,6 +19,25 @@ import hostelAllocationRoutes from './routes/hostelAllocationRoutes.js';
 import leaveRequestRoutes from './routes/leaveRequestRoutes.js';
 import roomChangeRoutes from './routes/roomChangeRoutes.js';
 
+import semesterRoutes from './routes/semesterRoutes.js';
+import subjectRoutes from './routes/subjectRoutes.js';
+import examRoutes from './routes/examRoutes.js';
+import assignmentRoutes from './routes/assignmentRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js';
+import complaintRoutes from './routes/complaintRoutes.js';
+import transportRoutes from './routes/transportRoutes.js';
+import placementRoutes from './routes/placementRoutes.js';
+
+import documentRoutes from './routes/documentRoutes.js';
+import idCardRoutes from './routes/idCardRoutes.js';
+import notificationRoutes from './routes/notificationRoutes.js';
+import academicCalendarRoutes from './routes/academicCalendarRoutes.js';
+import eventRoutes from './routes/eventRoutes.js';
+import certificateRoutes from './routes/certificateRoutes.js';
+import alumniRoutes from './routes/alumniRoutes.js';
+import auditLogRoutes from './routes/auditLogRoutes.js';
+import settingsRoutes from './routes/settingsRoutes.js';
+
 dotenv.config();
 
 // Connect to MongoDB Atlas
@@ -44,6 +63,25 @@ app.use('/api/hostels', hostelRoutes);
 app.use('/api/hostel-allocations', hostelAllocationRoutes);
 app.use('/api/leave-requests', leaveRequestRoutes);
 app.use('/api/room-changes', roomChangeRoutes);
+
+app.use('/api/semesters', semesterRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/exams', examRoutes);
+app.use('/api/assignments', assignmentRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/complaints', complaintRoutes);
+app.use('/api/transport', transportRoutes);
+app.use('/api/placement', placementRoutes);
+
+app.use('/api/documents', documentRoutes);
+app.use('/api/id-cards', idCardRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/calendar', academicCalendarRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/certificates', certificateRoutes);
+app.use('/api/alumni', alumniRoutes);
+app.use('/api/audit-logs', auditLogRoutes);
+app.use('/api/settings', settingsRoutes);
 
 app.get('/', (req, res) => {
     res.send('College ERP Backend is running with Database Connected! 🚀');

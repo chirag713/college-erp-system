@@ -10,6 +10,26 @@ import TimetableModule from './modules/TimetableModule';
 import LibraryAdminModule from './modules/LibraryAdminModule';
 import HostelAdminModule from './modules/HostelAdminModule';
 
+import SubjectSemesterModule from './modules/SubjectSemesterModule';
+import ExamModule from './modules/ExamModule';
+import AssignmentModule from './modules/AssignmentModule';
+import AcademicCalendarModule from './modules/AcademicCalendarModule';
+
+import TransportModule from './modules/TransportModule';
+import ComplaintModule from './modules/ComplaintModule';
+import LeaveRequestModule from './modules/LeaveRequestModule';
+import NotificationModule from './modules/NotificationModule';
+
+import EventModule from './modules/EventModule';
+import PlacementModule from './modules/PlacementModule';
+import AlumniModule from './modules/AlumniModule';
+import CertificateModule from './modules/CertificateModule';
+import IdCardModule from './modules/IdCardModule';
+
+import DocumentModule from './modules/DocumentModule';
+import AuditLogModule from './modules/AuditLogModule';
+import SettingsModule from './modules/SettingsModule';
+
 export default function AdminDashboard({ activeTab, user }) {
   const [applications, setApplications] = useState([
     { id: '101', student: 'Alice Smith', course: 'Computer Science', status: 'Pending', date: '2026-05-18' },
@@ -190,29 +210,34 @@ export default function AdminDashboard({ activeTab, user }) {
       {/* Hostel Tab */}
       {activeTab === 'hostel' && <HostelAdminModule />}
 
-      {/* Settings Tab (Mockup) */}
-      {activeTab === 'settings' && (
-        <div className="max-w-2xl bg-white border border-slate-100 rounded-3xl p-8 shadow-sm">
-          <h3 className="text-xl font-bold text-slate-900 mb-6">System Configurations</h3>
-          <div className="space-y-6">
-            <div className="flex items-center justify-between pb-6 border-b border-slate-100">
-              <div>
-                <p className="font-semibold text-slate-900">Admission Portal Status</p>
-                <p className="text-sm text-slate-500">Enable or disable new application submissions globally.</p>
-              </div>
-              <div className="w-12 h-6 bg-indigo-500 rounded-full relative cursor-pointer">
-                <div className="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Dynamic API Modules */}
       {activeTab === 'departments' && <DepartmentsModule />}
       {activeTab === 'courses' && <CoursesModule />}
       {activeTab === 'enrollments' && <EnrollmentsModule />}
       {activeTab === 'notices' && <NoticesModule role="admin" />}
+      {activeTab === 'semesters' && <SubjectSemesterModule role="admin" user={user} />}
+      {activeTab === 'exams' && <ExamModule role="admin" user={user} />}
+      {activeTab === 'assignments' && <AssignmentModule role="admin" user={user} />}
+      {activeTab === 'calendar' && <AcademicCalendarModule role="admin" user={user} />}
+      
+      {/* Batch 2 Modules */}
+      {activeTab === 'transport' && <TransportModule role="admin" user={user} />}
+      {activeTab === 'complaints' && <ComplaintModule role="admin" user={user} />}
+      {activeTab === 'leaves' && <LeaveRequestModule role="admin" user={user} />}
+      {activeTab === 'alerts' && <NotificationModule role="admin" user={user} />}
+
+      {/* Batch 3 Modules */}
+      {activeTab === 'events' && <EventModule role="admin" user={user} />}
+      {activeTab === 'placements' && <PlacementModule role="admin" user={user} />}
+      {activeTab === 'alumni' && <AlumniModule role="admin" user={user} />}
+      {activeTab === 'certificates' && <CertificateModule role="admin" user={user} />}
+      {activeTab === 'idcards' && <IdCardModule role="admin" user={user} />}
+
+      {/* Batch 4 Modules */}
+      {activeTab === 'documents' && <DocumentModule role="admin" user={user} />}
+      {activeTab === 'auditlogs' && <AuditLogModule role="admin" user={user} />}
+      {activeTab === 'settings' && <SettingsModule role="admin" user={user} />}
     </div>
   );
 }

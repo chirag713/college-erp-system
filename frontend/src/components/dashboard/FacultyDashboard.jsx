@@ -7,6 +7,22 @@ import FacultyProfileModule from './modules/FacultyProfileModule';
 import TimetableModule from './modules/TimetableModule';
 import LibraryModule from './modules/LibraryModule';
 
+import SubjectSemesterModule from './modules/SubjectSemesterModule';
+import ExamModule from './modules/ExamModule';
+import AssignmentModule from './modules/AssignmentModule';
+import AcademicCalendarModule from './modules/AcademicCalendarModule';
+
+import TransportModule from './modules/TransportModule';
+import ComplaintModule from './modules/ComplaintModule';
+import LeaveRequestModule from './modules/LeaveRequestModule';
+import NotificationModule from './modules/NotificationModule';
+
+import EventModule from './modules/EventModule';
+import AlumniModule from './modules/AlumniModule';
+import IdCardModule from './modules/IdCardModule';
+
+import DocumentModule from './modules/DocumentModule';
+
 export default function FacultyDashboard({ activeTab, user }) {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -72,6 +88,26 @@ export default function FacultyDashboard({ activeTab, user }) {
 
       {/* Library Tab */}
       {activeTab === 'library' && <LibraryModule />}
+
+      {/* New Batch 1 Modules */}
+      {activeTab === 'semesters' && <SubjectSemesterModule role="faculty" user={user} />}
+      {activeTab === 'exams' && <ExamModule role="faculty" user={user} />}
+      {activeTab === 'assignments' && <AssignmentModule role="faculty" user={user} />}
+      {activeTab === 'calendar' && <AcademicCalendarModule role="faculty" user={user} />}
+
+      {/* Batch 2 Modules */}
+      {activeTab === 'transport' && <TransportModule role="faculty" user={user} />}
+      {activeTab === 'complaints' && <ComplaintModule role="faculty" user={user} />}
+      {activeTab === 'leaves' && <LeaveRequestModule role="faculty" user={user} />}
+      {activeTab === 'alerts' && <NotificationModule role="faculty" user={user} />}
+
+      {/* Batch 3 Modules */}
+      {activeTab === 'events' && <EventModule role="faculty" user={user} />}
+      {activeTab === 'alumni' && <AlumniModule role="faculty" user={user} />}
+      {activeTab === 'idcards' && <IdCardModule role="faculty" user={user} />}
+
+      {/* Batch 4 Modules */}
+      {activeTab === 'documents' && <DocumentModule role="faculty" user={user} />}
     </div>
   );
 }
